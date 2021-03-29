@@ -1,12 +1,12 @@
 <template>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
+        <div class="row">
+            <div v-for="product in products" class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-header">{{product.title}}</div>
 
                     <div class="card-body">
-                        I'm an example component.
+                        {{product.description}}
                     </div>
                 </div>
             </div>
@@ -16,8 +16,16 @@
 
 <script>
     export default {
+
+        data() {
+            return {
+                products: []
+            }
+        },
+
         mounted() {
-            console.log('Component mounted.')
+            axios.get('/api/products')
+                .then(({data}) => this.products = data);
         }
     }
 </script>
