@@ -1966,7 +1966,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      product: null
+      product: []
     };
   },
   created: function created() {
@@ -2022,7 +2022,9 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.post('api/products').then(function (status) {
         return _this.$emit('completed', status);
-      });
+      }); // .then( (status) => {
+      //     console.log(status)
+      // })
     }
   }
 });

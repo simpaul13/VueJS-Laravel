@@ -12,14 +12,14 @@
 
         data() {
             return {
-                product: null
+                product: []
             }
         },
 
        created() {
             axios
                 .get(`/api/products/${this.$route.params.id}`)
-                .then(({data}) => (this.product = data))
+                .then(({data}) => this.product = data)
        }
     }
 </script>

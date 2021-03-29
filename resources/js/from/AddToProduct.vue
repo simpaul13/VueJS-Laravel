@@ -23,8 +23,14 @@
 
         methods: {
             onSubmit() {
-                this.form.post('api/products')
-                    .then(status => this.$emit('completed', status));
+                this.form
+                    .post('api/products')
+                    .then(status => this.$emit('completed', status))
+                    // .then( (status) => {
+	                //     console.log(status)
+                    // })
+
+
             }
         }
     }
