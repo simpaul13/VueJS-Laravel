@@ -64,7 +64,7 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Products::findOrFail($id);
     }
 
     /**
@@ -76,7 +76,11 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Products::findOrFail($id);
+
+        $product->title = request('title');
+        $product->description = request('description');
+        $product->save();
     }
 
     /**
