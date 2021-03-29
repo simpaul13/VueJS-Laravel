@@ -1,5 +1,6 @@
 import index from "./components/index";
 import about from "./components/about";
+import productshow from "./components/productshow";
 
 export default {
     mode : 'history',
@@ -14,6 +15,11 @@ export default {
             path : "/about",
             component:about,
             name : "About",
+        },
+        {
+            path: "/products/:id",
+            component:productshow,
+            name : "ProductShow",
         },
     ],
 
