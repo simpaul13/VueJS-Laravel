@@ -3,8 +3,11 @@
         <div class="row">
             <div v-for="product in products" class="col-md-4">
                 <div class="card mb-3">
-                    <div class="card-header">{{product.title}}</div>
-
+                    <div class="card-header">
+                        <router-link :to="{name: 'ProductShow', params: {id:product.id}}">
+                            {{product.title}}
+                        </router-link>
+                    </div>
                     <div class="card-body">
                         {{product.description}}
                     </div>
