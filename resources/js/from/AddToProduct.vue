@@ -29,8 +29,6 @@
                     // .then( (status) => {
 	                //     console.log(status)
                     // })
-
-
             }
         }
     }

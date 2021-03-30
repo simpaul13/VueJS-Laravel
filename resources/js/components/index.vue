@@ -2,6 +2,7 @@
     <div class="container">
         <!-- add product from -->
         <add-to-product @completed="addStatus"></add-to-product><br>
+
         <div class="row">
             <div v-for="(product, index) in products" class="col-md-4">
                 <div class="card mb-3">
@@ -14,23 +15,38 @@
                         {{product.description}}
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary">Edit</button>
+                        <button class="btn btn-primary" @click="onModal(product.id, index)">Edit</button>
                         <button class="btn btn-danger" @click="onDelete(product.id, index)">Delete</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <edit-product>
+            <div class="col-xs-12 form-group">
+                <label class="control-label">Title</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="col-xs-12 form-group">
+                <label class="control-label">Description</label>
+                <input type="text" class="form-control">
+            </div>
+        </edit-product>
+
     </div>
 </template>
 
 <script>
     import axios from 'axios';
     import AddToProduct from '../from/AddToProduct';
+    import EditProduct from '../from/EditProduct';
     import Status from '../utilities/Status';
+
     export default {
 
         components: {
-            AddToProduct
+            AddToProduct,
+            EditProduct
         },
 
         data() {
@@ -56,7 +72,11 @@
                     this.products.splice(index, 1)
 
                 }
+            },
 
+            onModal(id, index) {
+                console.log(id)
+                $('#myModal').modal('show')
 
             }
         }
