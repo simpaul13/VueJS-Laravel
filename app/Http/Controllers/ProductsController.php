@@ -36,13 +36,7 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['title' => 'required', 'description' => 'required']);
-
-        $product = new Products();
-        $product->title = request('title');
-        $product->description = request('description');
-        $product->save();
-
+        $product = Products::create($request->all());
         return $product;
     }
 
@@ -78,10 +72,8 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         $product = Products::findOrFail($id);
-
-        $product->title = request('title');
-        $product->description = request('description');
-        $product->save();
+        $product->update($request->all());
+        return $product;
     }
 
     /**
