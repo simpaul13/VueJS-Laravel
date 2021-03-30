@@ -14,8 +14,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Products::latest()->get();
-        return $products;
+        return Products::all();
     }
 
     /**
@@ -59,7 +58,7 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $product = Products::findOrFail($id);
+        //
     }
 
     /**
