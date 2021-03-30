@@ -35,7 +35,13 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $product = Products::create($request->all());
+        $this->validate($request, ['title' => 'required', 'description' => 'required']);
+
+        $product = new Products();
+        $product->title = request('title');
+        $product->description = request('description');
+        $product->save();
+
         return $product;
     }
 

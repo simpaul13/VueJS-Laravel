@@ -15,14 +15,24 @@
                         {{product.description}}
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" @click.prevent="">Edit</button>
+                        <button class="btn btn-primary" @click="onModal(product.id, index)">Edit</button>
                         <button class="btn btn-danger" @click="onDelete(product.id, index)">Delete</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <edit-product></edit-product>
+        <edit-product>
+            <div class="col-xs-12 form-group">
+                <label class="control-label">Title</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="col-xs-12 form-group">
+                <label class="control-label">Description</label>
+                <input type="text" class="form-control">
+            </div>
+        </edit-product>
+
     </div>
 </template>
 
@@ -62,6 +72,12 @@
                     this.products.splice(index, 1)
 
                 }
+            },
+
+            onModal(id, index) {
+                console.log(id)
+                $('#myModal').modal('show')
+
             }
         }
     }

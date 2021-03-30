@@ -13,11 +13,14 @@
 
                     <!-- Modal body -->
                     <div class="modal-body">
-
+                        <form v-on:submit.prevent="saveForm()">
+                           <slot></slot>
+                        </form>
                     </div>
 
                     <!-- Modal footer -->
                     <div class="modal-footer">
+                        <button class="btn btn-success">Update</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
 
@@ -29,15 +32,6 @@
 
 <script>
     export default {
-        data() {
-            return {
-                prdoucts: [
-
-                ]
-                // form: new Form({ title: '', description: ''})
-            }
-        },
-
         methods: {
 
         }
