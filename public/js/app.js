@@ -1931,11 +1931,11 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     addStatus: function addStatus(status) {
       this.products.unshift(status);
-      alert('your product has beeen added');
     },
-    onDelete: function onDelete(id) {
+    onDelete: function onDelete(id, index) {
       if (confirm('Are you sure you wann delete ?')) {
         axios__WEBPACK_IMPORTED_MODULE_0___default().delete("api/products/".concat(id));
+        this.products.splice(index, 1);
       }
     }
   }
@@ -38166,7 +38166,7 @@ var render = function() {
       _c(
         "div",
         { staticClass: "row" },
-        _vm._l(_vm.products, function(product) {
+        _vm._l(_vm.products, function(product, index) {
           return _c("div", { staticClass: "col-md-4" }, [
             _c("div", { staticClass: "card mb-3" }, [
               _c(
@@ -38211,7 +38211,7 @@ var render = function() {
                     staticClass: "btn btn-danger",
                     on: {
                       click: function($event) {
-                        return _vm.onDelete(product.id)
+                        return _vm.onDelete(product.id, index)
                       }
                     }
                   },
