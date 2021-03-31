@@ -15,17 +15,18 @@
                         <div class="modal-body">
                             <div class="col-xs-12 form-group">
                                 <label class="control-label">Title</label>
-                                <input type="text" class="form-control" name="title" :value="product.title">
+                                <input type="text" class="form-control" v-model="form.title" v-model:value="product.title">
+
                             </div>
                             <div class="col-xs-12 form-group">
                                 <label class="control-label">Description</label>
-                                <input type="text" class="form-control" name="description" :value="product.description">
+                                <input type="text" class="form-control" v-model="form.description" v-model:value="product.description">
                             </div>
                         </div>
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-success">Update</button>
+                            <button class="btn btn-success">Update</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </form>
@@ -45,17 +46,17 @@
 
         data() {
             return {
-                form: new Form({title: '', description: ''})
+                form: new Form({
+                    title: '',
+                    description: ''
+                })
             }
         },
 
         methods: {
             onUpdate() {
-                this.form
-                    .put('products/' + this.product.id)
-                    .then(status => this.$emit('completed', status))
-                    // alert('okay');
-                    // console.log(this.product.id)
+                this.form.patch('products/' + this.product.id)
+                    $('#myModal').modal('hide')
             }
         }
     }

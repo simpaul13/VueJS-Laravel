@@ -2090,6 +2090,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['product'],
   data: function data() {
@@ -2102,12 +2103,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     onUpdate: function onUpdate() {
-      var _this = this;
-
-      this.form.put('products/' + this.product.id).then(function (status) {
-        return _this.$emit('completed', status);
-      }); // alert('okay');
-      // console.log(this.product.id)
+      this.form.patch('products/' + this.product.id);
+      $('#myModal').modal('hide');
     }
   }
 });
@@ -38572,9 +38569,43 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.title,
+                        expression: "form.title"
+                      },
+                      {
+                        name: "model",
+                        rawName: "v-model:value",
+                        value: _vm.product.title,
+                        expression: "product.title",
+                        arg: "value"
+                      }
+                    ],
                     staticClass: "form-control",
-                    attrs: { type: "text", name: "title" },
-                    domProps: { value: _vm.product.title }
+                    attrs: { type: "text" },
+                    domProps: {
+                      value: _vm.form.title,
+                      value: _vm.product.title
+                    },
+                    on: {
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.product, "title", $event.target.value)
+                        },
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "title", $event.target.value)
+                        }
+                      ]
+                    }
                   })
                 ]),
                 _vm._v(" "),
@@ -38584,9 +38615,47 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.description,
+                        expression: "form.description"
+                      },
+                      {
+                        name: "model",
+                        rawName: "v-model:value",
+                        value: _vm.product.description,
+                        expression: "product.description",
+                        arg: "value"
+                      }
+                    ],
                     staticClass: "form-control",
-                    attrs: { type: "text", name: "description" },
-                    domProps: { value: _vm.product.description }
+                    attrs: { type: "text" },
+                    domProps: {
+                      value: _vm.form.description,
+                      value: _vm.product.description
+                    },
+                    on: {
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.product,
+                            "description",
+                            $event.target.value
+                          )
+                        },
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "description", $event.target.value)
+                        }
+                      ]
+                    }
                   })
                 ])
               ]),
@@ -38622,11 +38691,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-success", attrs: { type: "submit" } },
-        [_vm._v("Update")]
-      ),
+      _c("button", { staticClass: "btn btn-success" }, [_vm._v("Update")]),
       _vm._v(" "),
       _c(
         "button",
