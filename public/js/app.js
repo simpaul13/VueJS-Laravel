@@ -1914,8 +1914,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -1927,6 +1925,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      product: null,
       products: []
     };
   },
@@ -1943,15 +1942,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     onDelete: function onDelete(id, index) {
       if (confirm('Are you sure you wann delete ?')) {
-        axios__WEBPACK_IMPORTED_MODULE_0___default().delete("api/products/".concat(id));
+        axios__WEBPACK_IMPORTED_MODULE_0___default().delete("/products/".concat(id));
         this.products.splice(index, 1);
       }
     },
-    onModal: function onModal(val_id, val_title, val_description, index) {
-      $('#myModal').modal('show'); // console.log(val_title)
-      // this.id = val_id;
-      // this.title = val_title;
-      // this.description = val_description;
+    onModal: function onModal(product, index) {
+      $('#myModal').modal('show');
+      this.product = product;
     }
   }
 });
@@ -1987,7 +1984,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    axios.get("/api/products/".concat(this.$route.params.id)).then(function (_ref) {
+    axios.get("/products/".concat(this.$route.params.id)).then(function (_ref) {
       var data = _ref.data;
       return _this.product = data;
     });
@@ -2035,7 +2032,7 @@ __webpack_require__.r(__webpack_exports__);
     onSubmit: function onSubmit() {
       var _this = this;
 
-      this.form.post('api/products').then(function (status) {
+      this.form.post('products').then(function (status) {
         return _this.$emit('completed', status);
       }); // .then( (status) => {
       //     console.log(status)
@@ -2096,7 +2093,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['product'],
   methods: {}
 });
 
@@ -2478,7 +2477,7 @@ var Status = /*#__PURE__*/function () {
   _createClass(Status, null, [{
     key: "all",
     value: function all(then) {
-      return axios__WEBPACK_IMPORTED_MODULE_0___default().get('api/products').then(function (_ref) {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default().get('/products').then(function (_ref) {
         var data = _ref.data;
         return then(data);
       });
@@ -38350,12 +38349,7 @@ var render = function() {
                     staticClass: "btn btn-primary",
                     on: {
                       click: function($event) {
-                        return _vm.onModal(
-                          product.id,
-                          product.title,
-                          product.description,
-                          index
-                        )
+                        return _vm.onModal(product, index)
                       }
                     }
                   },
@@ -38381,7 +38375,7 @@ var render = function() {
         0
       ),
       _vm._v(" "),
-      _c("edit-product")
+      _c("edit-product", { attrs: { product: _vm.product } })
     ],
     1
   )
@@ -38553,11 +38547,23 @@ var render = function() {
                   }
                 }
               },
-              [_vm._m(1), _vm._v(" "), _vm._m(2)]
+              [
+                _c("div", { staticClass: "col-xs-12 form-group" }, [
+                  _c("label", { staticClass: "control-label" }),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.product.title }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ]
             )
           ]),
           _vm._v(" "),
-          _vm._m(3)
+          _vm._m(2)
         ])
       ])
     ])
@@ -38579,16 +38585,6 @@ var staticRenderFns = [
         },
         [_vm._v("×")]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-12 form-group" }, [
-      _c("label", { staticClass: "control-label" }, [_vm._v("Title")]),
-      _vm._v(" "),
-      _c("input", { staticClass: "form-control", attrs: { type: "text" } })
     ])
   },
   function() {

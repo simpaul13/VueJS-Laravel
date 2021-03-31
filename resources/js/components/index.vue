@@ -15,16 +15,14 @@
                         {{product.description}}
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary" @click="onModal(product.id, product.title, product.description, index)">Edit</button>
+                        <button class="btn btn-primary" @click="onModal(product, index)">Edit</button>
                         <button class="btn btn-danger" @click="onDelete(product.id, index)">Delete</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <edit-product>
-
-        </edit-product>
+        <edit-product :product=product></edit-product>
 
     </div>
 </template>
@@ -44,6 +42,7 @@
 
         data() {
             return {
+                product: null,
                 products: []
             }
         },
@@ -61,25 +60,17 @@
             onDelete(id, index) {
                 if(confirm('Are you sure you wann delete ?')) {
 
-                    axios.delete(`api/products/${id}`)
+                    axios.delete(`/products/${id}`)
                     this.products.splice(index, 1)
 
                 }
             },
-
-            onModal: function (val_id, val_title, val_description, index) {
-
+            onModal(product, index) {
 
                 $('#myModal').modal('show')
-
-
-
-
-                // console.log(val_title)
-                // this.id = val_id;
-                // this.title = val_title;
-                // this.description = val_description;
+                this.product = product
             }
+
         }
     }
 </script>

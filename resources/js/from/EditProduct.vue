@@ -15,8 +15,9 @@
                     <div class="modal-body">
                         <form v-on:submit.prevent="saveForm()">
                             <div class="col-xs-12 form-group">
-                                <label class="control-label">Title</label>
-                                <input type="text" class="form-control">
+
+                                <label class="control-label"></label>
+                                <input type="text" class="form-control" :value="product.title">
                             </div>
                             <div class="col-xs-12 form-group">
                                 <label class="control-label">Description</label>
@@ -39,6 +40,8 @@
 
 <script>
     export default {
+        props: ['product'],
+
         methods: {
 
         }
