@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Products;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return Products::all();
+        return Product::all();
     }
 
     /**
@@ -35,12 +35,15 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['title' => 'required', 'description' => 'required']);
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
 
-        $product = new Products();
-        $product->title = request('title');
-        $product->description = request('description');
-        $product->save();
+        $product = Product::create([
+            'title' => request('title'),
+            'description' => request('description')
+        ]);
 
         return $product;
     }
@@ -53,7 +56,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        return $product = Products::findOrFail($id);
+        return $product = Product::findOrFail($id);
     }
 
     /**
@@ -76,8 +79,9 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Products::findOrFail($id);
+        $product = Product::findOrFail($id);
         $product->update($request->all());
+
         return $product;
     }
 
@@ -87,9 +91,12 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        Products::findOrFail($id)->delete();
-        return response()->json(['status' => 'completed'], 200);
+        $product->delete();
+
+        return [
+            'success' => 1
+        ];
     }
 }

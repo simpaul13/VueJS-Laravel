@@ -18,7 +18,7 @@
 
        created() {
             axios
-                .get(`/api/products/${this.$route.params.id}`)
+                .get(`/products/${this.$route.params.id}`)
                 .then(({data}) => this.product = data)
        }
     }
