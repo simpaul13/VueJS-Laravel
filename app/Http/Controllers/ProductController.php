@@ -40,7 +40,7 @@ class ProductController extends Controller
             'description' => 'required'
         ]);
 
-        $product = Products::create([
+        $product = Product::create([
             'title' => request('title'),
             'description' => request('description')
         ]);
@@ -56,7 +56,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return $product = Products::findOrFail($id);
+        return $product = Product::findOrFail($id);
     }
 
     /**
@@ -79,7 +79,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Products::findOrFail($id);
+        $product = Product::findOrFail($id);
         $product->update($request->all());
         return $product;
     }
@@ -90,7 +90,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Products $product)
+    public function destroy(Product $product)
     {
         $product->delete();
 
