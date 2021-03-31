@@ -1916,13 +1916,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -1954,9 +1947,11 @@ __webpack_require__.r(__webpack_exports__);
         this.products.splice(index, 1);
       }
     },
-    onModal: function onModal(id, index) {
-      console.log(id);
-      $('#myModal').modal('show');
+    onModal: function onModal(val_id, val_title, val_description, index) {
+      $('#myModal').modal('show'); // console.log(val_title)
+      // this.id = val_id;
+      // this.title = val_title;
+      // this.description = val_description;
     }
   }
 });
@@ -2062,6 +2057,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -38348,7 +38350,12 @@ var render = function() {
                     staticClass: "btn btn-primary",
                     on: {
                       click: function($event) {
-                        return _vm.onModal(product.id, index)
+                        return _vm.onModal(
+                          product.id,
+                          product.title,
+                          product.description,
+                          index
+                        )
                       }
                     }
                   },
@@ -38374,21 +38381,7 @@ var render = function() {
         0
       ),
       _vm._v(" "),
-      _c("edit-product", [
-        _c("div", { staticClass: "col-xs-12 form-group" }, [
-          _c("label", { staticClass: "control-label" }, [_vm._v("Title")]),
-          _vm._v(" "),
-          _c("input", { staticClass: "form-control", attrs: { type: "text" } })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-xs-12 form-group" }, [
-          _c("label", { staticClass: "control-label" }, [
-            _vm._v("Description")
-          ]),
-          _vm._v(" "),
-          _c("input", { staticClass: "form-control", attrs: { type: "text" } })
-        ])
-      ])
+      _c("edit-product")
     ],
     1
   )
@@ -38560,12 +38553,11 @@ var render = function() {
                   }
                 }
               },
-              [_vm._t("default")],
-              2
+              [_vm._m(1), _vm._v(" "), _vm._m(2)]
             )
           ]),
           _vm._v(" "),
-          _vm._m(1)
+          _vm._m(3)
         ])
       ])
     ])
@@ -38587,6 +38579,26 @@ var staticRenderFns = [
         },
         [_vm._v("×")]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xs-12 form-group" }, [
+      _c("label", { staticClass: "control-label" }, [_vm._v("Title")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "text" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-xs-12 form-group" }, [
+      _c("label", { staticClass: "control-label" }, [_vm._v("Description")]),
+      _vm._v(" "),
+      _c("input", { staticClass: "form-control", attrs: { type: "text" } })
     ])
   },
   function() {

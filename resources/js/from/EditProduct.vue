@@ -14,7 +14,14 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <form v-on:submit.prevent="saveForm()">
-                           <slot></slot>
+                            <div class="col-xs-12 form-group">
+                                <label class="control-label">Title</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col-xs-12 form-group">
+                                <label class="control-label">Description</label>
+                                <input type="text" class="form-control">
+                            </div>
                         </form>
                     </div>
 
