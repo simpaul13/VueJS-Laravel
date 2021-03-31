@@ -4,7 +4,7 @@
         <div class="modal fade" id="myModal">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <form v-on:submit.prevent="saveForm()">
+                    <form @submit.prevent="onUpdate">
                         <!-- Modal Header -->
                         <div class="modal-header">
                             <h4 class="modal-title">Modal Heading</h4>
@@ -14,13 +14,12 @@
                         <!-- Modal body -->
                         <div class="modal-body">
                             <div class="col-xs-12 form-group">
-
                                 <label class="control-label">Title</label>
-                                <input type="text" class="form-control" :value="product.title">
+                                <input type="text" class="form-control" name="title" :value="product.title">
                             </div>
                             <div class="col-xs-12 form-group">
                                 <label class="control-label">Description</label>
-                                <input type="text" class="form-control" :value="product.description">
+                                <input type="text" class="form-control" name="description" :value="product.description">
                             </div>
                         </div>
 
@@ -44,9 +43,19 @@
             'product'
         ],
 
+        data() {
+            return {
+                form: new Form({title: '', description: ''})
+            }
+        },
+
         methods: {
-            saveForm() {
-                console.log('a')
+            onUpdate() {
+                this.form
+                    .put('products/' + this.product.id)
+                    .then(status => this.$emit('completed', status))
+                    // alert('okay');
+                    // console.log(this.product.id)
             }
         }
     }

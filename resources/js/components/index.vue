@@ -4,6 +4,7 @@
         <add-to-product @completed="addStatus"></add-to-product><br>
 
         <div class="row">
+        <edit-product :product=product></edit-product>
             <div v-for="(product, index) in products" class="col-md-4">
                 <div class="card mb-3">
                     <div class="card-header">
@@ -21,16 +22,13 @@
                 </div>
             </div>
         </div>
-
-        <edit-product :product=product></edit-product>
-
     </div>
 </template>
 
 <script>
     import axios from 'axios';
-    import AddToProduct from '../from/AddToProduct';
-    import EditProduct from '../from/EditProduct';
+    import AddToProduct from '../form/AddToProduct';
+    import EditProduct from '../form/EditProduct';
     import Status from '../utilities/Status';
 
     export default {
@@ -42,7 +40,7 @@
 
         data() {
             return {
-                product: null,
+                product: '',
                 products: []
             }
         },
@@ -65,6 +63,7 @@
 
                 }
             },
+
             onModal(product, index) {
 
                 $('#myModal').modal('show')
