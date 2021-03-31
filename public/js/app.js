@@ -2093,10 +2093,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['product'],
-  methods: {}
+  methods: {
+    saveForm: function saveForm() {
+      console.log('a');
+    }
+  }
 });
 
 /***/ }),
@@ -38534,22 +38537,24 @@ var render = function() {
     _c("div", { staticClass: "modal fade", attrs: { id: "myModal" } }, [
       _c("div", { staticClass: "modal-dialog modal-dialog-centered" }, [
         _c("div", { staticClass: "modal-content" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.saveForm()
-                  }
+          _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.saveForm()
                 }
-              },
-              [
+              }
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "col-xs-12 form-group" }, [
-                  _c("label", { staticClass: "control-label" }),
+                  _c("label", { staticClass: "control-label" }, [
+                    _vm._v("Title")
+                  ]),
                   _vm._v(" "),
                   _c("input", {
                     staticClass: "form-control",
@@ -38558,12 +38563,22 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _vm._m(1)
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _vm._m(2)
+                _c("div", { staticClass: "col-xs-12 form-group" }, [
+                  _c("label", { staticClass: "control-label" }, [
+                    _vm._v("Description")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.product.description }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ]
+          )
         ])
       ])
     ])
@@ -38591,18 +38606,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-xs-12 form-group" }, [
-      _c("label", { staticClass: "control-label" }, [_vm._v("Description")]),
-      _vm._v(" "),
-      _c("input", { staticClass: "form-control", attrs: { type: "text" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-footer" }, [
-      _c("button", { staticClass: "btn btn-success" }, [_vm._v("Update")]),
+      _c(
+        "button",
+        { staticClass: "btn btn-success", attrs: { type: "submit" } },
+        [_vm._v("Update")]
+      ),
       _vm._v(" "),
       _c(
         "button",

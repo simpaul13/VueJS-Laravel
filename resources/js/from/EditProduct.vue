@@ -4,33 +4,32 @@
         <div class="modal fade" id="myModal">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
+                    <form v-on:submit.prevent="saveForm()">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modal Heading</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
 
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h4 class="modal-title">Modal Heading</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <form v-on:submit.prevent="saveForm()">
+                        <!-- Modal body -->
+                        <div class="modal-body">
                             <div class="col-xs-12 form-group">
 
-                                <label class="control-label"></label>
+                                <label class="control-label">Title</label>
                                 <input type="text" class="form-control" :value="product.title">
                             </div>
                             <div class="col-xs-12 form-group">
                                 <label class="control-label">Description</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" :value="product.description">
                             </div>
-                        </form>
-                    </div>
+                        </div>
 
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button class="btn btn-success">Update</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                    </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Update</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
 
                 </div>
             </div>
@@ -46,7 +45,9 @@
         ],
 
         methods: {
-
+            saveForm() {
+                console.log('a')
+            }
         }
     }
 </script>
