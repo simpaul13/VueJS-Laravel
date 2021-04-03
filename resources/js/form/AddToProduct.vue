@@ -17,7 +17,10 @@
     export default {
         data() {
             return {
-                form: new Form({ title: '', description: ''})
+                form: new Form({
+                    title: '',
+                    description: ''
+                })
             }
         },
 

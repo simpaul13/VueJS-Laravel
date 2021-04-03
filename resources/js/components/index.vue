@@ -16,7 +16,7 @@
                         {{product.description}}
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary" @click="onModal(product, index)">Edit</button>
+                        <button class="btn btn-primary" @click="onModal(product)">Edit</button>
                         <button class="btn btn-danger" @click="onDelete(product.id, index)">Delete</button>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                 }
             },
 
-            onModal(product, index) {
+            onModal(product) {
 
                 $('#myModal').modal('show')
                 this.product = product

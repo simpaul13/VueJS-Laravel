@@ -15,12 +15,11 @@
                         <div class="modal-body">
                             <div class="col-xs-12 form-group">
                                 <label class="control-label">Title</label>
-                                <input type="text" class="form-control" v-model="form.title" v-model:value="product.title">
-
+                                <input type="text" class="form-control" :value="product.title" @input="form.title = $event.target.value">
                             </div>
                             <div class="col-xs-12 form-group">
                                 <label class="control-label">Description</label>
-                                <input type="text" class="form-control" v-model="form.description" v-model:value="product.description">
+                                <input type="text" class="form-control" :value="product.description" @input="form.description = $event.target.value" >
                             </div>
                         </div>
 
@@ -43,9 +42,9 @@
         props: [
             'product'
         ],
-
         data() {
             return {
+
                 form: new Form({
                     title: '',
                     description: ''
@@ -54,10 +53,13 @@
         },
 
         methods: {
-            onUpdate() {
+            onUpdate(value) {
+
                 this.form.patch('products/' + this.product.id)
-                    $('#myModal').modal('hide')
+                $('#myModal').modal('hide')
             }
-        }
+        },
+
+
     }
 </script>

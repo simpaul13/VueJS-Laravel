@@ -1944,7 +1944,7 @@ __webpack_require__.r(__webpack_exports__);
         this.products.splice(index, 1);
       }
     },
-    onModal: function onModal(product, index) {
+    onModal: function onModal(product) {
       $('#myModal').modal('show');
       this.product = product;
     }
@@ -2090,7 +2090,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['product'],
   data: function data() {
@@ -2102,7 +2101,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    onUpdate: function onUpdate() {
+    onUpdate: function onUpdate(value) {
       this.form.patch('products/' + this.product.id);
       $('#myModal').modal('hide');
     }
@@ -38365,7 +38364,7 @@ var render = function() {
                       staticClass: "btn btn-primary",
                       on: {
                         click: function($event) {
-                          return _vm.onModal(product, index)
+                          return _vm.onModal(product)
                         }
                       }
                     },
@@ -38569,42 +38568,13 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.title,
-                        expression: "form.title"
-                      },
-                      {
-                        name: "model",
-                        rawName: "v-model:value",
-                        value: _vm.product.title,
-                        expression: "product.title",
-                        arg: "value"
-                      }
-                    ],
                     staticClass: "form-control",
                     attrs: { type: "text" },
-                    domProps: {
-                      value: _vm.form.title,
-                      value: _vm.product.title
-                    },
+                    domProps: { value: _vm.product.title },
                     on: {
-                      input: [
-                        function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.product, "title", $event.target.value)
-                        },
-                        function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "title", $event.target.value)
-                        }
-                      ]
+                      input: function($event) {
+                        _vm.form.title = $event.target.value
+                      }
                     }
                   })
                 ]),
@@ -38615,46 +38585,13 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.description,
-                        expression: "form.description"
-                      },
-                      {
-                        name: "model",
-                        rawName: "v-model:value",
-                        value: _vm.product.description,
-                        expression: "product.description",
-                        arg: "value"
-                      }
-                    ],
                     staticClass: "form-control",
                     attrs: { type: "text" },
-                    domProps: {
-                      value: _vm.form.description,
-                      value: _vm.product.description
-                    },
+                    domProps: { value: _vm.product.description },
                     on: {
-                      input: [
-                        function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.product,
-                            "description",
-                            $event.target.value
-                          )
-                        },
-                        function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "description", $event.target.value)
-                        }
-                      ]
+                      input: function($event) {
+                        _vm.form.description = $event.target.value
+                      }
                     }
                   })
                 ])
