@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        return Product::orderBy('updated_at', 'DESC')->get();
     }
 
     /**
@@ -79,10 +79,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::findOrFail($id);
-        $product->update($request->all());
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
 
-        return $product;
+        $product = Product::findOrFail($id);
+
+        $product->title = $request->input('title');
+        $product->description = $request->input('description');
+
+        return $product->save();
     }
 
     /**
